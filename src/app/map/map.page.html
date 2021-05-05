@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true">
+  <ion-button id="first" color="medium">Change Language</ion-button><!--
+  <p id=“select”>
+    <ion-item>
+      <ion-label>燃やすゴミ</ion-label>
+      <ion-checkbox color=“danger” checked slot=“start”></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>プラスチック</ion-label>
+      <ion-checkbox color=“warning” checked slot=“start”></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>ペットボトル</ion-label>
+      <ion-checkbox color=“primary” checked slot=“start”></ion-checkbox>
+    </ion-item>
+  </p>-->
+  <p id=“select”>
+    <ion-item>
+      <ion-label>燃やすゴミ</ion-label>
+      <ion-checkbox color=“danger”></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>プラスチック</ion-label>
+      <ion-checkbox color=“warning”></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>ペットボトル</ion-label>
+      <ion-checkbox color=“primary”></ion-checkbox>
+    </ion-item>
+  </p>
+  <div class="container">
+    <google-map id="set"
+    height="100%"
+    width="100%"
+    [center]="center"
+    [zoom]="zoom"
+    [options]="options"
+    >
+      <map-marker
+      #markerElem="mapMarker"
+      *ngIf="currentPosition"
+      [position]="currentPosition"
+      [options]="currentPositionMarkerOption"
+      (mapClick)="onCurrentPositionMarkerClick(markerElem)"
+      ></map-marker>
+      <map-marker
+      #marker="mapMarker"
+      *ngFor="let markerPosition of markerPositions; let i = index"
+        [position]="markerPosition"
+        (mapClick)="openInfoWindow(marker,i)" 
+        [options]="MarkerOption"
+      >
+        <map-info-window>{{markerPosition.des}}</map-info-window>
+      </map-marker>
+    </google-map>
+  </div>
+</ion-content>
